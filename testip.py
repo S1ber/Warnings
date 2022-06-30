@@ -8,4 +8,5 @@ a=json.loads(requests.get("https://ipinfo.io/2.16.53.0/json").text)
 b=json.loads(requests.get("https://ipinfo.io/178.141.120.90/json").text)
 print(a,b)
 print(geodesic(b["loc"],a["loc"]).km)
+print(1)
 
