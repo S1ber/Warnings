@@ -53,11 +53,12 @@ bots_ip=["46.147.164.212","109.70.151.2","185.169.233.101","45.149.175.239","92.
 vzloms={}
 
 
+
 if "Выйти" in main_str.text:
     print("Вошло")
     year="2022"
     month="06"
-    day="29"
+    day="28"
     logs=sess.get(f"http://ulog.union-u.net/event.php?server=30&type=&day={day}&mount={month}&year={year}&go=%D0%9F%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C&hour=all&listen=0")
     while f"{year}-{month}-{day}" in logs.text:
         logs=BeautifulSoup(logs.text ,"lxml")
@@ -118,11 +119,6 @@ if "Выйти" in main_str.text:
                         bots2[nick]=0
                         #chat_sender(f"New warning bots: {i}")
                     strokll.append(b)
-            if "передал" in i.text and "шар" in i.text:
-                b = i.text.replace("Игрок", " Игрок")
-                if b not in strokll:
-                    chat_sender(b)
-                strokll.append(b)
 
             if "назначил заестителем" in i.text.lower():
                 zams_biz.append(i.text.split()[5])
@@ -218,6 +214,9 @@ if "Выйти" in main_str.text:
                     break
         except:
             pass
+    for i in vzloms:
+        if len(vzloms[i])==2:
+            bans+=f"/banoff 0 {i} 2000 До выяснений(Взломан) // Раф\n"
     chat_sender(bans)
     print(fams)
     print(zams_fam)
